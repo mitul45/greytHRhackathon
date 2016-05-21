@@ -13,14 +13,11 @@ router.post('/', function (req, res, next) {
     })
 
     user.save(function (err, user) {
-        if (err){
+        if (err)
             res.send(500, {})
-            // return console.error(err);
-            return
-        } else {
+        else
             res.send(200, user);
-            return;
-        }
+        return;
     });
 
 })

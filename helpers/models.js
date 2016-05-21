@@ -51,7 +51,8 @@ var MeetingSchema = mongoose.Schema({
     startTime: Date,
     endTime: Date,
     priority: Number,
-    agenda: String
+    agenda: String,
+    cancelled: { type: Boolean, default: false }
 });
 
 var MeetingModel = mongoose.model('Meeting', MeetingSchema);

@@ -21,17 +21,15 @@ router.post('/', function (req, res, next) {
         startTime: startTime,
         endTime: endTime,
         agenda: agenda,
+        cancelled: false
     })
 
     meeting.save(function (err, meeting) {
-        if (err){
+        if (err) 
             res.send(500, {})
-            // return console.error(err);
-            return;
-        } else {
+        else
             res.send(200, meeting);
-            return;
-        }
+        return;
     });
 
 

@@ -18,14 +18,12 @@ router.post('/', function (req, res, next) {
     })
 
     room.save(function (err, room) {
-        if (err){
+        if (err)
             res.send(500, {})
-            // return console.error(err);
-            return
-        } else {
+        else
             res.send(200, room);
-            return;
-        }
+        return;
+
     });
 })
 
