@@ -30,24 +30,28 @@ var FacilityModel = mongoose.model('Facility', FacilitySchema);
 var RoomSchema = mongoose.Schema({
     name: String,
     capacity: Number,
-    faciities: [
-            { 
-                type: 'ObjectId', 
-                ref: 'Facility'
-            }
-    ]
+    facilities: [{
+                count: Number,
+                type: { 
+                    type: mongoose.Schema.Types.ObjectId, 
+                    ref: 'Facility'
+                }
+            }],
+    floor: Number,
+    active: { type: Boolean, default: true }
 })
 
 var RoomModel = mongoose.model('Room', RoomSchema);
 
 // Meetings
 var MeetingSchema = mongoose.Schema({
-    owner: { type: 'ObjectId', ref: 'User' },
-    participants: [{ type: 'ObjectId', ref: 'User' }],
-    room: { type: 'ObjectId', ref: 'Room' },
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    room: { type: mongoose.Schema.Types.ObjectId, ref: 'Room' },
     startTime: Date,
     endTime: Date,
-    priority: Number
+    priority: Number,
+    agenda: String
 });
 
 var MeetingModel = mongoose.model('Meeting', MeetingSchema);
