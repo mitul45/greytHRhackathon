@@ -6,31 +6,45 @@ var Meeting = require('../helpers/models').meeting;
 router.post('/', function (req, res, next) {
     var owner = req.param('owner');
     var participants = req.param('participants');
-    var startTime = new Date(req.param('startTime'));
+    var startTime = req.param('startTime');
     var duration = req.param('duration');
-    var agenda = req.param('agenda')
+    var agenda = req.param('agenda');
+    var room = req.param('room');
 
-    var startTime = new Date(startTime);
+    startTime = new Date(startTime);
+    var endTime = getEndTime(startTime, duration);
 
-    function getEndTime(startTime, duration) {
-        return startTime + duration;
-    }
-
-    var user = new User({
-        name: name,
-        reputation: reputation
+    var meeting = new Meeting({
+        owner: owner,
+        participants: participants,
+        room: room,
+        startTime: startTime,
+        endTime: endTime,
+        agenda: agenda,
     })
 
-    user.save(function (err, user) {
+    meeting.save(function (err, meeting) {
         if (err){
             res.send(500, {})
             // return console.error(err);
-            return
+            return;
         } else {
-            res.send(200, user);
+            res.send(200, meeting);
             return;
         }
     });
+
+
+    // Utils
+    /**
+     * @param  {startTime} javascript Date obj
+     * @param  {duration}  Number in minutes
+     * @return {endTime}   javascript Date obj
+     */
+    function getEndTime(startTime, duration) {
+        return (new Date(startTime.getTime() + duration* 60 * 1000));
+    }
+
 
 })
 
