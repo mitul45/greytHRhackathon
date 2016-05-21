@@ -31,13 +31,10 @@ var RoomSchema = mongoose.Schema({
 	name: String,
 	capacity: Number,
 	faciities: [
-		{
 			{ 
-				type: Schema.Types.ObjectId, 
+				type: 'ObjectId', 
 				ref: 'Facility'
-			},
-			count: Number 
-		}
+			}
 	]
 })
 
@@ -45,9 +42,9 @@ var RoomModel = mongoose.model('Room', RoomSchema);
 
 // Meetings
 var MeetingSchema = mongoose.Schema({
-	owner: { type: Schema.Types.ObjectId, ref: 'User' },
-	participants: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-	room: { type: Schema.Types.ObjectId, ref: 'Room' },
+	owner: { type: 'ObjectId', ref: 'User' },
+	participants: [{ type: 'ObjectId', ref: 'User' }],
+	room: { type: 'ObjectId', ref: 'Room' },
 	startTime: Date,
 	endTime: Date,
 	priority: Number
