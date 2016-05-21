@@ -9,24 +9,24 @@ router.get('/', function(req, res, next) {
 
 /* Creat a user */
 router.post('/', function (req, res, next) {
-	var name = req.param('name');
-	var reputation = req.param('reputation');
+    var name = req.param('name');
+    var reputation = req.param('reputation');
 
-	var user = new User({
-		name: name,
-		reputation: reputation
-	})
+    var user = new User({
+        name: name,
+        reputation: reputation
+    })
 
-	user.save(function (err, user) {
-  		if (err){
-  			res.send(500, {})
-  			// return console.error(err);
-  			return
-  		} else {
-			res.send(200, user);
-			return;
-		}
-	});
+    user.save(function (err, user) {
+        if (err){
+            res.send(500, {})
+            // return console.error(err);
+            return
+        } else {
+            res.send(200, user);
+            return;
+        }
+    });
 
 })
 

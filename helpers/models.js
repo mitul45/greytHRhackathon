@@ -21,41 +21,41 @@ var UserModel = mongoose.model('User', UserSchema);
 
 // Facilities
 var FacilitySchema = mongoose.Schema({
-	type: String
+    type: String
 })
 
 var FacilityModel = mongoose.model('Facility', FacilitySchema);
 
 // Conference rooms
 var RoomSchema = mongoose.Schema({
-	name: String,
-	capacity: Number,
-	faciities: [
-			{ 
-				type: 'ObjectId', 
-				ref: 'Facility'
-			}
-	]
+    name: String,
+    capacity: Number,
+    faciities: [
+            { 
+                type: 'ObjectId', 
+                ref: 'Facility'
+            }
+    ]
 })
 
 var RoomModel = mongoose.model('Room', RoomSchema);
 
 // Meetings
 var MeetingSchema = mongoose.Schema({
-	owner: { type: 'ObjectId', ref: 'User' },
-	participants: [{ type: 'ObjectId', ref: 'User' }],
-	room: { type: 'ObjectId', ref: 'Room' },
-	startTime: Date,
-	endTime: Date,
-	priority: Number
+    owner: { type: 'ObjectId', ref: 'User' },
+    participants: [{ type: 'ObjectId', ref: 'User' }],
+    room: { type: 'ObjectId', ref: 'Room' },
+    startTime: Date,
+    endTime: Date,
+    priority: Number
 });
 
 var MeetingModel = mongoose.model('Meeting', MeetingSchema);
 
 // exporting all data models
 module.exports = {
-	user: UserModel,
-	room: RoomModel,
-	facility: FacilityModel,
-	meeting: MeetingModel
+    user: UserModel,
+    room: RoomModel,
+    facility: FacilityModel,
+    meeting: MeetingModel
 }
